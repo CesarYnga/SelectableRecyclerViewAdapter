@@ -1,4 +1,4 @@
-package com.cesarynga.selectionrecyclerview;
+package com.cesarynga.selectablerecyclerview;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.cesarynga.selectionrecyclerview.adapter;
+package com.cesarynga.selectablerecyclerview.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -63,6 +63,16 @@ public abstract class SelectableAdapter<VH extends SelectableAdapter.ViewHolder>
                     } else if (checkStates.size() == 0 || !checkStates.valueAt(0)) {
                         checkedItemCount = 0;
                     }
+                } else if (choiceMode == CHOICE_MODE_MULTIPLE) {
+                    final int position = getAdapterPosition();
+                    boolean checked = !checkStates.get(position, false);
+                    checkStates.put(position, checked);
+                    if (checked) {
+                        checkedItemCount++;
+                    } else {
+                        checkedItemCount--;
+                    }
+                    setCheckStateInView(itemView, checked);
                 }
             }
         }

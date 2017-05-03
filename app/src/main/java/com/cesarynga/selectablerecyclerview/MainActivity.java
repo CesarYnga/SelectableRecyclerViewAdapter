@@ -1,12 +1,12 @@
-package com.cesarynga.selectionrecyclerview;
+package com.cesarynga.selectablerecyclerview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.cesarynga.selectionrecyclerview.adapter.MyAdapter;
-import com.cesarynga.selectionrecyclerview.adapter.SelectableAdapter;
+import com.cesarynga.selectablerecyclerview.adapter.MyAdapter;
+import com.cesarynga.selectablerecyclerview.adapter.SelectableAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(recyclerView, list);
-        adapter.setChoiceMode(SelectableAdapter.CHOICE_MODE_SINGLE);
+        adapter.setChoiceMode(SelectableAdapter.CHOICE_MODE_MULTIPLE);
         recyclerView.setAdapter(adapter);
     }
 }

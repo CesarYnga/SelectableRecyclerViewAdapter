@@ -1,4 +1,4 @@
-package com.cesarynga.selectionrecyclerview;
+package com.cesarynga.selectablerecyclerview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

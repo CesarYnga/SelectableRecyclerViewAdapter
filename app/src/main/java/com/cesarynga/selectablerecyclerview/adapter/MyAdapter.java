@@ -1,4 +1,4 @@
-package com.cesarynga.selectionrecyclerview.adapter;
+package com.cesarynga.selectablerecyclerview.adapter;
 
 
 import android.support.v7.widget.RecyclerView;
