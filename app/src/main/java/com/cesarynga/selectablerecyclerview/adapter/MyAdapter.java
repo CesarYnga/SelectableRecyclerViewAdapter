@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class MyAdapter extends SelectableAdapter<MyAdapter.ViewHolder> {
 
     private final List<String> list;
+    private MyItemClickListener myItemClickListener;
 
     public MyAdapter(RecyclerView recyclerView, List<String> list) {
         super(recyclerView);
@@ -35,6 +37,10 @@ public class MyAdapter extends SelectableAdapter<MyAdapter.ViewHolder> {
         return list.size();
     }
 
+    public void setOnItemClickListener(MyItemClickListener listener) {
+        this.myItemClickListener = listener;
+    }
+
     public class ViewHolder extends SelectableAdapter.ViewHolder {
 
         private TextView textView;
@@ -42,10 +48,22 @@ public class MyAdapter extends SelectableAdapter<MyAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(android.R.id.text1);
+            setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick() {
+                    if (myItemClickListener != null) {
+                        myItemClickListener.onItemClick(list.get(getAdapterPosition()));
+                    }
+                }
+            });
         }
 
         public void bind(String text) {
             textView.setText(text);
         }
+    }
+
+    public interface MyItemClickListener {
+        void onItemClick(String string);
     }
 }

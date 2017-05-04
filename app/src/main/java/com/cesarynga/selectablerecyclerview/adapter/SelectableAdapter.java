@@ -40,13 +40,28 @@ public abstract class SelectableAdapter<VH extends SelectableAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private OnItemClickListener onItemClickListener;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
         }
 
+        /*
+        Method for handling item click listener. Using this method it will perform the click action
+        and keep the selection behavior according to the choice mode.
+         */
+        public void setOnItemClickListener(OnItemClickListener listener) {
+            this.onItemClickListener = listener;
+        }
+
         @Override
         public void onClick(View v) {
+            performItemClick();
+            this.onItemClickListener.onItemClick();
+        }
+
+        private void performItemClick() {
             if (choiceMode != CHOICE_MODE_NONE) {
                 final int previousPosition = checkStates.keyAt(0);
                 final int currentPosition = getAdapterPosition();
@@ -76,5 +91,9 @@ public abstract class SelectableAdapter<VH extends SelectableAdapter.ViewHolder>
                 }
             }
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick();
     }
 }
